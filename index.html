@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portail Touristique du Maroc</title>
+    <!-- Liens vers les polices de Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&family=Roboto:wght@300;400;700&family=Lobster&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+    <style>
+        /* Polices Globales */
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #3b5998;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
+            color: #fff;
+        }
+
+        h2 {
+            color: #4CAF50;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.5em;
+        }
+
+        h3 {
+            color: #FF6347;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2em;
+        }
+
+        p {
+            color: #444;
+            font-size: 1.2em;
+            line-height: 1.6;
+            text-align: justify;
+            margin-bottom: 20px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        nav ul li {
+            margin-right: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 1.2em;
+            transition: color 0.3s ease;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        nav ul li a:hover {
+            color: #FF6347;
+        }
+
+        /* Style des sections */
+        .section {
+            background-color: #fff;
+            padding: 40px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .destination-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .destination-item {
+            border: 2px solid #ddd;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            background-color: #f9f9f9;
+            transition: transform 0.3s ease;
+        }
+
+        .destination-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .destination-item img {
+            width: 100%;
+            border-radius: 8px;
+        }
+
+        footer {
+            background-color: #2c3e50;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer form input,
+        footer form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+        }
+
+        footer form button {
+            background-color: #FF6347;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        footer form button:hover {
+            background-color: #e44d3b;
+        }
+
+        /* Amélioration des boutons */
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+
+        /* Animation du texte d'accueil */
+        .banner p {
+            font-size: 1.5em;
+            color: #fff;
+            font-family: 'Lobster', cursive;
+        }
+
+        .section {
+            transition: transform 0.5s ease-out;
+        }
+
+        .section:hover {
+            transform: scale(1.05);
+        }
+
+        /* Texte coloré dans différentes sections */
+        #accueil p {
+            color: #FF6347;
+        }
+
+        #destinations h2 {
+            color: #2c3e50;
+        }
+
+        /* Événements : changement dynamique */
+        #eventList li {
+            font-size: 1.2em;
+            color: #007bff;
+            cursor: pointer;
+            transition: color 0.3s ease;
+        }
+
+        #eventList li:hover {
+            color: #FF6347;
+        }
+
+        #blogPosts article {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease;
+        }
+
+        #blogPosts article:hover {
+            background-color: #FFFAF0;
+        }
+
+        /* Ajout des animations */
+        #testimonials p {
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            100% { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+<header class="banner">
+    <div class="container">
+        <h1 id="greeting"></h1>
+        <p>Un voyage inoubliable au cœur de la culture et des paysages marocains</p>
+    </div>
+    <nav>
+        <ul>
+            <li><a href="#accueil">Accueil</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#activites">Activités</a></li>
+            <li><a href="#pratique">Pratique</a></li>
+            <li><a href="#evenements">Événements</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#communaute">Communauté</a></li>
+            <li><a href="#apropos">À propos</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+</header>
+
+<section id="accueil">
+    <h2>Bienvenue sur le Portail Touristique du Maroc</h2>
+    <p>Le Maroc, un pays riche en culture, en histoire et en paysages époustouflants, vous attend. Des montagnes de l'Atlas aux plages de l'Atlantique, en passant par les villes impériales et le désert du Sahara, le Maroc offre une variété d'expériences qui émerveilleront les voyageurs. Explorez des destinations comme Marrakech, Fès, Essaouira et bien d'autres, et découvrez les traditions marocaines, la cuisine savoureuse, et les chaleureuses communautés locales. Nous vous proposons ici un guide complet pour planifier votre prochain voyage au Maroc.</p>
+</section>
+
+<section id="destinations" class="section">
+    <h2>Destinations</h2>
+    <div class="destination-list">
+        <article class="destination-item">
+            <h3>Marrakech</h3>
+            <p>Explorez les souks vibrants, les palais majestueux et les jardins luxuriants de Marrakech. La ville est un mélange fascinant de tradition et de modernité, offrant des expériences inoubliables à chaque coin de rue.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Fès</h3>
+            <p>Fès est l’une des plus anciennes villes du Maroc, un véritable musée à ciel ouvert. Découvrez ses médinas classées au patrimoine mondial de l’UNESCO, ses artisans du cuir et du métal, et ses écoles coraniques historiques.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Casablanca</h3>
+            <p>Venez découvrir Casablanca, la ville moderne du Maroc, célèbre pour ses plages, ses cafés et son architecture contemporaine. La mosquée Hassan II, l’une des plus grandes du monde, est un monument à ne pas manquer.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Agadir</h3>
+            <p>Agadir est une station balnéaire moderne qui vous offre des plages magnifiques et une atmosphère détendue. Parfaite pour les amoureux de la mer et des sports nautiques.</p>
+        </article>
+        <!-- Ajout de 7 nouvelles villes -->
+        <article class="destination-item">
+            <h3>Chefchaouen</h3>
+            <p>Chefchaouen, la ville bleue, est un véritable bijou du Rif. Perchée dans les montagnes, ses ruelles peintes en bleu et blanc offrent une atmosphère magique et une vue imprenable.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Rabat</h3>
+            <p>Rabat, la capitale du Maroc, mêle histoire et modernité. Découvrez la Kasbah des Oudayas, la tour Hassan et les jardins luxuriants, tout en explorant une ville en plein essor.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Ouarzazate</h3>
+            <p>Ouarzazate est la porte du désert. Entourée de kasbahs et de palmeraies, c’est également la ville du cinéma, célèbre pour ses studios et ses décors de films.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Essaouira</h3>
+            <p>Essaouira est une ville côtière qui combine charme, histoire et nature. Découvrez ses plages, sa médina classée au patrimoine mondial, et ses festivals de musique.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Tanger</h3>
+            <p>Tanger est un point de rencontre entre l'Afrique et l'Europe. Un mélange de cultures, de plages et de lieux historiques qui rend la ville fascinante à visiter.</p>
+        </article>
+        <article class="destination-item">
+            <h3>Merzouga</h3>
+            <p>Merzouga est l’une des portes d’entrée du désert du Sahara. Idéale pour les amoureux du désert, elle offre des balades à dos de chameau et des nuits étoilées dans des campements berbères.</p>
+        </article>
+    </div>
+</section>
+
+<section id="activites" class="section">
+    <h2>Activités au Maroc</h2>
+    <ul>
+        <li>Randonnée dans les montagnes de l'Atlas</li>
+        <li>Excursion dans le désert du Sahara</li>
+        <li>Visite des médinas historiques de Fès et Marrakech</li>
+        <li>Dégustation de la cuisine marocaine (tajine, couscous, pastilla)</li>
+        <li>Balades à dos de chameau à Merzouga</li>
+    </ul>
+</section>
+
+<section id="evenements" class="section">
+    <h2>Événements à venir</h2>
+    <ul id="eventList">
+        <li>Festival International du Film de Marrakech</li>
+        <li>Musée de la Musique et Concerts à Rabat</li>
+        <li>Festival Gnaoua d'Essaouira</li>
+        <li>Festival des Roses à Kelaat M'Gouna</li>
+        <li>Exposition artisanale de Marrakech</li>
+    </ul>
+</section>
+
+<section id="blog" class="section">
+    <h2>Articles de Blog</h2>
+    <div id="blogPosts">
+        <article>
+            <h3>Le Guide Complet pour Explorer le Sahara</h3>
+            <p>Le désert du Sahara offre une expérience unique en son genre. Voici un guide complet pour vous aider à planifier votre aventure dans le plus grand désert du monde.</p>
+        </article>
+        <article>
+            <h3>Les Meilleurs Restaurants à Marrakech</h3>
+            <p>Marrakech est une destination de choix pour les amoureux de la cuisine. Découvrez les meilleurs restaurants pour savourer la gastronomie locale.</p>
+        </article>
+    </div>
+</section>
+
+<section id="communaute" class="section">
+    <h2>Rejoignez la Communauté</h2>
+    <p>Partagez vos expériences de voyage avec d'autres voyageurs, échangez des astuces et des conseils, et découvrez des itinéraires inspirants créés par d'autres passionnés du Maroc.</p>
+</section>
+
+<section id="apropos" class="section">
+    <h2>À propos du Portail</h2>
+    <p>Notre site a pour but de vous fournir toutes les informations nécessaires pour vivre une expérience unique et mémorable au Maroc. Nous mettons à votre disposition un guide détaillé des meilleures destinations, activités, événements et conseils pratiques pour vous aider à planifier votre voyage en toute sérénité.</p>
+</section>
+
+<footer id="contact" class="section">
+    <h3>Contactez-nous</h3>
+    <form>
+        <input type="text" name="nom" placeholder="Votre nom">
+        <input type="email" name="email" placeholder="Votre email">
+        <textarea name="message" rows="5" placeholder="Votre message..."></textarea>
+        <button type="submit">Envoyer</button>
+    </form>
+</footer>
+
+<script>
+    // Ajouter des événements interactifs (exemple de changement de texte d'accueil)
+    document.getElementById('greeting').textContent = "Bienvenue à bord, cher voyageur !";
+
+    const eventItems = document.querySelectorAll('#eventList li');
+    eventItems.forEach(item => {
+        item.addEventListener('click', function() {
+            alert("Vous avez sélectionné l'événement: " + item.textContent);
+        });
+    });
+
+    // Animation de survol sur les destinations
+    const destinationItems = document.querySelectorAll('.destination-item');
+    destinationItems.forEach(item => {
+        item.addEventListener('mouseenter', function() {
+            item.style.backgroundColor = "#f0f8ff"; // Change color on hover
+        });
+        item.addEventListener('mouseleave', function() {
+            item.style.backgroundColor = "#f9f9f9"; // Reset background color
+        });
+    });
+</script>
+
+</body>
+</html>
